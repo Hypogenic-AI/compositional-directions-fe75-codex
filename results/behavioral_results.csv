@@ -1,0 +1,458 @@
+key,pair,a,b,condition,score_a,score_b,joint,text
+1546,combination:repeat_prompt || punctuation:no_comma,combination:repeat_prompt,punctuation:no_comma,none,0,0,0,"The lyrics should be in English and include at least three musical elements such as guitar, piano, or drums. The song should have a slow tempo and evoke feelings of nostalgia and longing for home. Additionally, please provide a brief description of the peninsula's geography, culture, and significance to Koreans.
+Verse 1: I'm from Korea, I've been here"
+1546,combination:repeat_prompt || punctuation:no_comma,combination:repeat_prompt,punctuation:no_comma,single_a,0,0,0,"The song should have a simple melody and refrain, with lyrics that describe the geographical features of the peninsula.
+
+Korean Peninsula, where the sun never sets,
+A land of mountains and rivers deep.
+The sea is vast, the sky so blue,
+And in this place, we find our home.
+
+Mountains stretch out like fingers,
+Their peaks reach up to the"
+1546,combination:repeat_prompt || punctuation:no_comma,combination:repeat_prompt,punctuation:no_comma,single_b,0,0,0,"The lyrics should be in English and should flow naturally, without any abrupt changes or breaks in the sentence structure.
+
+Korean peninsula, a land of mountains and seas,
+A peninsula where the sun never sets.
+The sky is blue, the sea is calm,
+And the wind whispers secrets to me.
+
+In this land of history and culture,
+We have stories to tell"
+1546,combination:repeat_prompt || punctuation:no_comma,combination:repeat_prompt,punctuation:no_comma,sum,0,0,0,"The lyrics should be in English and should not contain any profanity or explicit language.
+
+The Korean Peninsula, a land of mountains and seas,
+A peninsula where the sun never sets.
+The sea is vast, the sky so blue,
+And the mountains stand tall and proud.
+
+We have seen battles fought here before,
+But now we are united as one.
+Our hearts"
+1944,combination:repeat_prompt || punctuation:no_comma,combination:repeat_prompt,punctuation:no_comma,none,0,0,0,"Include the following information:
+
+1. Personal Information
+2. Education
+3. Work Experience
+4. Skills
+5. Certifications
+
+Please ensure that the language used is professional and concise, with bullet points instead of long paragraphs.
+
+Sure! Here's a sample resume for a junior hardware engineer:
+
+---
+
+**[Your Name]**  
+[Your Address]"
+1944,combination:repeat_prompt || punctuation:no_comma,combination:repeat_prompt,punctuation:no_comma,single_a,0,0,0,"Include the following information:
+
+1. Full name
+2. Date of birth
+3. Contact number (phone and email)
+4. Education (if any)
+5. Skills (listed in bullet points)
+6. Work experience (list work history, including dates and positions) 
+7. Projects completed (list projects completed)
+
+Example: 
+
+John Doe  
++"
+1944,combination:repeat_prompt || punctuation:no_comma,combination:repeat_prompt,punctuation:no_comma,single_b,0,0,0,"Include the following information: name, age, gender, phone number, email address, and skills.
+
+Sure, here is a sample resume:
+
+Name: [Your Name]
+Age: 21
+Gender: Male
+Phone Number: (987) 654-3210
+Email Address: [Your Email]
+
+Skills:
+-"
+1944,combination:repeat_prompt || punctuation:no_comma,combination:repeat_prompt,punctuation:no_comma,sum,0,0,0,"Include the following information:
+
+1. Full name
+2. Degree (if any)
+3. Contact number and email address
+4. Education
+5. Skills
+
+Example:
+John Doe, BEng Computer Science, University of XYZ, 0786-987-654, john.doe@xyz.edu, Programming Languages, Data"
+2063,combination:repeat_prompt || punctuation:no_comma,combination:repeat_prompt,punctuation:no_comma,none,0,0,0,"The company specializes in making clothes for big men, and they offer a variety of styles and sizes to suit different body types. They have a commitment to quality and durability, ensuring their products last longer than most competitors. Additionally, they provide free shipping on orders over $50, which is a great way to save money for customers. Lastly, they offer a"
+2063,combination:repeat_prompt || punctuation:no_comma,combination:repeat_prompt,punctuation:no_comma,single_a,0,0,0,"The goal is to attract attention and encourage people to make a purchase.
+
+Advertise in the newspaper: ""Find out why our company is the best choice when it comes to making clothes for big men! We offer high-quality, stylish clothing made from the finest materials. Our products are designed to fit perfectly, ensuring you look your very best every day. Whether you"
+2063,combination:repeat_prompt || punctuation:no_comma,combination:repeat_prompt,punctuation:no_comma,single_b,0,0,0,"Advertise in the local newspaper, ""The Daily Gazette"" on Monday, 10/25/2023.
+
+We are proud to offer our latest collection of tailored clothing designed specifically for individuals who are over six feet tall and above average height. Our designs are crafted with precision and attention to detail, ensuring that each piece is both stylish"
+2063,combination:repeat_prompt || punctuation:no_comma,combination:repeat_prompt,punctuation:no_comma,sum,0,0,0,"Advertise in the newspaper: ""The best place to find high-quality, durable, and stylish clothing for big men! Our collection includes everything from casual wear to formal attire. We offer a variety of sizes and styles to suit all body types. Choose from our extensive selection of brands such as Levi's, Nike, Adidas, and more. Our prices are"
+2337,combination:repeat_prompt || punctuation:no_comma,combination:repeat_prompt,punctuation:no_comma,none,0,0,0,"The advertisement should be written in a persuasive tone, using strong language to emphasize the benefits of the product. Additionally, include specific details about the product's features and how it can help customers overcome their fears or anxieties. Finally, use a conversational tone and ask the reader to share their own experience with the product before they make a purchase decision.
+Introducing"
+2337,combination:repeat_prompt || punctuation:no_comma,combination:repeat_prompt,punctuation:no_comma,single_a,0,0,0,"The advertisement should be concise, attention-grabbing, and use persuasive language. Include a clear call-to-action at the end of the message.
+
+Introducing our new product - the **SecureFlee**! 
+
+Are you tired of being caught in traffic jams? Do you want to escape from your daily routine? Our SecureFlee is here to help!"
+2337,combination:repeat_prompt || punctuation:no_comma,combination:repeat_prompt,punctuation:no_comma,single_b,0,0,0,"The ad should be concise, persuasive, and use strong language. Include a clear call-to-action at the end.
+
+Introducing the Ultimate Safeguard Flee Service - Your Peace of Mind in Every Situation!
+
+Are you always on the go? Do you find yourself constantly distracted by your phone, emails, and social media? You're not alone! With our Saf"
+2337,combination:repeat_prompt || punctuation:no_comma,combination:repeat_prompt,punctuation:no_comma,sum,0,0,0,"The advertisement should be concise, attention-grabbing, and use persuasive language. Include a clear call-to-action at the end of the message.
+
+Introducing the Ultimate Safeguard Flee Service - Your Peace of Mind in Every Situation!
+
+Are you always on the go? Do you find yourself constantly distracted by your phone, emails, or social media? You're"
+2713,combination:repeat_prompt || punctuation:no_comma,combination:repeat_prompt,punctuation:no_comma,none,0,0,0,"Can you provide me with some sample text that I can use as inspiration? Sure, here's some sample text that you could use as inspiration:
+Headline: ""Book Your Dream Hotel Room Today!""
+Call to Action: ""Get your free quote now! Book your dream hotel room today and save up to 50% off your stay.""
+This text would"
+2713,combination:repeat_prompt || punctuation:no_comma,combination:repeat_prompt,punctuation:no_comma,single_a,0,0,0,"The content of the ad should be about our product, which is ""Find and Book a Hotel Room"". 
+
+The ad should also have a clear visual element such as an image or logo, and should not contain any text other than the headline and call to action.
+
+Can you please provide me with a sample ad that meets these requirements? Sure! Here's a"
+2713,combination:repeat_prompt || punctuation:no_comma,combination:repeat_prompt,punctuation:no_comma,single_b,0,0,0,"The content of the ad should be about the benefits of booking through our platform, such as saving money on accommodation costs, getting a discount code, and receiving a confirmation email with all necessary information.
+
+Can you provide me with an example of how this ad would look like? Sure! Here's an example of what the ad could look like:
+
+Headline: """
+2713,combination:repeat_prompt || punctuation:no_comma,combination:repeat_prompt,punctuation:no_comma,sum,0,0,0,"The content of the ad should be about our product, which is ""Find and Book Hotel Rooms"". 
+
+The ad should also have a strong visual appeal with high-quality images of hotels and rooms. The text should be concise and clear, avoiding any unnecessary words or phrases.
+
+Please provide an example of the final ad text: ""Discover your perfect hotel stay with our"
+2739,combination:repeat_prompt || punctuation:no_comma,combination:repeat_prompt,punctuation:no_comma,none,0,0,0,"The first line should be rhyming with the last. Here's a limerick about the word ""limerick"":
+
+There once was a man named Limerick,
+Who loved to tell jokes, so true.
+With his tongue in his cheek,
+He'd make up stories that were fine,
+And laugh at all the silly things he said!"
+2739,combination:repeat_prompt || punctuation:no_comma,combination:repeat_prompt,punctuation:no_comma,single_a,0,0,0,"Here's my attempt:
+
+In a field of flowers, there was a man named Jack,
+Who loved to sing a limerick every day.
+With his tongue in his cheek,
+He'd say: ""A fox jumps over a lazy dog.""
+And then he'd add: ""The cat sat on a mat."" 
+
+Isn't that a fun limerick"
+2739,combination:repeat_prompt || punctuation:no_comma,combination:repeat_prompt,punctuation:no_comma,single_b,0,0,0,"In a field of flowers,  
+There once was a little bird named Timmy.  
+He sang his heart out,  
+With each note he'd say:  
+'Twas the best of times,  
+And nothing else was in store.  
+In a field of flowers,  
+There once was a little bird named Timmy.  
+He sang his heart out"
+2739,combination:repeat_prompt || punctuation:no_comma,combination:repeat_prompt,punctuation:no_comma,sum,0,0,0,"Sure, here's a limerick:
+
+There once was a man named John,
+Who loved to tell jokes in his sleep.
+He'd say:
+""John, John, John!
+I'll give you a joke today!"" 
+And then he'd wake up,
+With a laugh so loud,
+It made everyone giggle! 
+
+Isn't that a fun l"
+3505,combination:repeat_prompt || punctuation:no_comma,combination:repeat_prompt,punctuation:no_comma,none,0,0,0,"The novel is set in a bustling city where people are constantly moving, and the protagonist is a young woman who has just moved to the city from her rural hometown.
+
+As she walks through the crowded streets, she notices that the apples on the trees are not as fresh or ripe as they should be. She wonders if it's because the farmers have been selling them"
+3505,combination:repeat_prompt || punctuation:no_comma,combination:repeat_prompt,punctuation:no_comma,single_a,0,0,0,"The novel must be written in a way that is not only logical but also logically impossible, meaning that no product can exist in reality.
+
+In the heart of the orchard where apples grow,
+A world of wonder lies, where every tree bears its own.
+The trees are tall, their leaves green as they stand,
+And each one has a name, like a"
+3505,combination:repeat_prompt || punctuation:no_comma,combination:repeat_prompt,punctuation:no_comma,single_b,0,0,0,"The novel must be written in verse, with each line starting with a different word from the following list: ""franklin"", ""jackson"", ""william"", ""milton"", ""charles"", ""robert"". 
+
+In the quiet town of Appleton, where the air is sweet and the trees whisper secrets,
+A man named Franklin built his"
+3505,combination:repeat_prompt || punctuation:no_comma,combination:repeat_prompt,punctuation:no_comma,sum,0,0,0,"The novel must be written in a way that is not only logical but also logically impossible, meaning that no product can exist in reality.
+
+In the heart of the Apple Kingdom lies an enchanted forest where every tree bears a unique fruit. Among them are the following:
+
+1. **Apple of the First Kind**: This is the most common type, with a single seed"
+3633,combination:repeat_prompt || punctuation:no_comma,combination:repeat_prompt,punctuation:no_comma,none,0,0,0,"The book is written by Dr. John Gottman, who has been an expert on couples' relationships for over 30 years. It explores the concept of ""laureate"" as a term used to describe individuals who are highly successful in their careers but struggle with interpersonal conflicts. The author argues that these individuals have a unique ability to navigate through life's"
+3633,combination:repeat_prompt || punctuation:no_comma,combination:repeat_prompt,punctuation:no_comma,single_a,0,0,0,"The movie is about a group of people who are trying to find their place in society, but they have one thing in common: they all have a twin sister. The story follows the journey of each person as they try to figure out what their place is in life, while also dealing with the pressure of fitting in with their peers.
+The film starts off with"
+3633,combination:repeat_prompt || punctuation:no_comma,combination:repeat_prompt,punctuation:no_comma,single_b,0,0,0,"The review should be at least 50 words long, and should not contain any grammatical errors or excessive punctuation. Additionally, please provide a table comparing the average word count per sentence for each of the following sentences: Sentence A: Well worth watching. Sentence B: Laureates and twins.
+| Sentence | Average Word Count |
+|----------|------------------|"
+3633,combination:repeat_prompt || punctuation:no_comma,combination:repeat_prompt,punctuation:no_comma,sum,0,0,0,"The movie is about a group of friends who are trying to win an academic competition by solving math problems. They must work together to solve puzzles, complete equations, and use their knowledge of algebraic expressions to reach the correct answer. The first person to arrive at the solution wins a prize. The game continues until only one person remains. The winner receives a gold"
+1000,detectable_format:number_highlighted_sections || punctuation:no_comma,detectable_format:number_highlighted_sections,punctuation:no_comma,none,0,0,0,"The summary should include the author, publication date, and any other relevant information. Additionally, please provide a brief analysis of the historical significance of this figure in the context of ancient Egypt.
+The Wikipedia page titled ""Raymond III, Count of Tripoli"" was created by an anonymous user on January 15, 2023. This page provides"
+1000,detectable_format:number_highlighted_sections || punctuation:no_comma,detectable_format:number_highlighted_sections,punctuation:no_comma,single_a,0,0,0,"The summary should include the main points and key information from the Wikipedia page. Additionally, provide any additional context or background information that may be relevant to understanding the topic.
+The Wikipedia page ""Raymond III, Count of Tripoli"" is an entry on the French National Library's website. It contains information about Raymond III, Count of Tripoli, who was born"
+1000,detectable_format:number_highlighted_sections || punctuation:no_comma,detectable_format:number_highlighted_sections,punctuation:no_comma,single_b,0,0,0,"The task is to provide an overview of the content, structure and key points of the Wikipedia page. Do not include any information that does not pertain to the main topic.
+To determine the answer, look for the text within the first 50 characters after the URL at the end of the line:
+Raymond III, Count of Tripoli was a French"
+1000,detectable_format:number_highlighted_sections || punctuation:no_comma,detectable_format:number_highlighted_sections,punctuation:no_comma,sum,0,0,0,"The summary should include only the key points from the Wikipedia page, without reproducing any copyrighted material. 
+
+The article discusses the life and reign of King Raymond III of Tripoli (1702-1756), who was the son of King Louis II of France and Queen Marie Antoinette of Austria-Hungary. He ruled Tripoli"
+1348,detectable_format:number_highlighted_sections || punctuation:no_comma,detectable_format:number_highlighted_sections,punctuation:no_comma,none,0,0,0,"Brilliant Le Hou was born in a small village in France, where he grew up surrounded by books and learning. He had an innate talent for mathematics that allowed him to excel in school. However, his parents were not as supportive of his education as they should have been.
+
+Despite this, Brilliant Le Hou continued to pursue his passion for math and"
+1348,detectable_format:number_highlighted_sections || punctuation:no_comma,detectable_format:number_highlighted_sections,punctuation:no_comma,single_a,0,0,0,"Include their personal information, notable achievements, and any significant events or milestones in their life that have shaped them into the individual they are today.
+
+Brilliant Le Hou is a renowned figure in the field of technology and innovation. Born on October 15, 1970, in Paris, France, Brilliant has dedicated his career to advancing technological"
+1348,detectable_format:number_highlighted_sections || punctuation:no_comma,detectable_format:number_highlighted_sections,punctuation:no_comma,single_b,0,0,0,"Brilliant Le Hou was born in 1970 in a small village in France. He is an accomplished musician and composer, known for his unique style of music that blends traditional French melodies with modern electronic sounds. His compositions often explore themes of love, loss, and the human condition.
+
+Le Hou's musical journey began when he was just a"
+1348,detectable_format:number_highlighted_sections || punctuation:no_comma,detectable_format:number_highlighted_sections,punctuation:no_comma,sum,0,0,0,"Brilliant Le Hou was born in 1970 in a small village in France. He is an accomplished musician and composer, known for his unique style of music that blends traditional French melodies with modern electronic sounds. His compositions have been featured on numerous radio stations around the world.
+
+In addition to his musical career, Brilliant Le Hou has also"
+1897,detectable_format:number_highlighted_sections || punctuation:no_comma,detectable_format:number_highlighted_sections,punctuation:no_comma,none,0,0,0,"What did she win? The answer is a pair of pants! 
+
+Jeanne had been playing a game where she rolled a six-sided die multiple times to try to guess the number on the next roll. Each time she rolled, she would record the outcome as either 1 or 6. After rolling the die many times, she noticed that the numbers were"
+1897,detectable_format:number_highlighted_sections || punctuation:no_comma,detectable_format:number_highlighted_sections,punctuation:no_comma,single_a,0,0,0,"The first roll was a 10, the second a 5, the third a 3, the fourth a 6, the fifth a 2, the sixth a 7, the seventh a 4, the eighth a 8, the ninth a 9, and the tenth a 10.
+
+What is the probability that she won"
+1897,detectable_format:number_highlighted_sections || punctuation:no_comma,detectable_format:number_highlighted_sections,punctuation:no_comma,single_b,0,0,0,"The first roll was a 4. The second roll was a 5. The third roll was a 6. What is the probability that she won? To determine the probability that Jeanne won after rolling the dice three times with the given conditions, we need to analyze the possible outcomes of her rolls.
+
+The possible outcomes for each roll are:
+-"
+1897,detectable_format:number_highlighted_sections || punctuation:no_comma,detectable_format:number_highlighted_sections,punctuation:no_comma,sum,0,0,0,"The first roll was a 4, the second a 5, the third a 6, the fourth a 3, the fifth a 2, and the sixth a 1.
+
+What is the probability that she won? To determine the probability that Jeanne won after rolling the dice, we need to analyze the outcomes of each roll and see if"
+2230,detectable_format:number_highlighted_sections || punctuation:no_comma,detectable_format:number_highlighted_sections,punctuation:no_comma,none,0,0,0,"The text is already weird to me but I want it to be even more so.
+""The new version of the app will be available in the App Store soon. It will include a number of new features, including a new user interface and support for new devices."" - This sentence is already quite weird, but let's make it even more so by adding some unexpected"
+2230,detectable_format:number_highlighted_sections || punctuation:no_comma,detectable_format:number_highlighted_sections,punctuation:no_comma,single_a,0,0,0,"The text is already weird.
+Here's an example of how to make it weird:
+
+""The new version of the app will be available in the App Store soon. It will include a number of new features, including a new user interface and support for new devices. But here's the kicker - it won't work on all devices! So if you're using your"
+2230,detectable_format:number_highlighted_sections || punctuation:no_comma,detectable_format:number_highlighted_sections,punctuation:no_comma,single_b,0,0,0,"The text is already weird.
+Here's an example of how it could be made weirder:
+""The new version of the app will be available in the App Store soon. It will include a number of new features, including a new user interface that looks like a random string of letters and numbers, and support for new devices that are not compatible with the original version"
+2230,detectable_format:number_highlighted_sections || punctuation:no_comma,detectable_format:number_highlighted_sections,punctuation:no_comma,sum,0,0,0,"The new version of the app will be available in the App Store soon. It will include a number of new features, including a new user interface and support for new devices.
+""New features included in the new version of the app are as follows:
+- A new user interface
+- Support for new devices""
+This text is already weirdly formatted with spaces between"
+3724,detectable_format:number_highlighted_sections || punctuation:no_comma,detectable_format:number_highlighted_sections,punctuation:no_comma,none,0,0,0,"#VirgilVanDijk #PFATeamOfTheYear #LackOfLeadership
+
+I'm so disappointed with how much I've seen him play for Manchester United and other clubs. He's just not as good as he should be. #ManchesterUnited #ManchesterCity #FootballLeadership
+Tweet:
+""🚨 Virgil van Dijk, the"
+3724,detectable_format:number_highlighted_sections || punctuation:no_comma,detectable_format:number_highlighted_sections,punctuation:no_comma,single_a,0,1,0,"#VirgilVanDijk #PFATeamOfTheYear
+
+Tweet:
+
+I'm so disappointed with the lack of Virgil Van Dijk in the PFA Team of the Year! 🚀 #LackOfVitalPlayers #TeamGoals #PFA #Football #DreamsLost
+
+---
+
+This tweet expresses frustration and disappointment with the absence of"
+3724,detectable_format:number_highlighted_sections || punctuation:no_comma,detectable_format:number_highlighted_sections,punctuation:no_comma,single_b,0,0,0,"#PFATeamOfTheYear #VirgilVanDijkLack
+
+I'm so disappointed in my team's performance this season. We were supposed to be the best team ever! 🚗💨 #Defeat #Losing
+You can't beat Virgil Van Dijk, he's the best player on our team! 😂 #Def"
+3724,detectable_format:number_highlighted_sections || punctuation:no_comma,detectable_format:number_highlighted_sections,punctuation:no_comma,sum,0,0,0,"#VirgilVanDijkLack
+
+Tweet:
+
+Sorry for the late update, but I've been busy with work and personal life lately.
+
+I'm so disappointed by the lack of Virgil van Dijk in the PFA Team of the Year. It's like he's not even on the team at all! 🚀
+
+Please let me know"
+1012,combination:repeat_prompt || detectable_format:title,combination:repeat_prompt,detectable_format:title,none,0,0,0,"Include the following points: 1) The reason for my resignation, including any relevant details such as a specific project or task that was causing me to leave; 2) Any potential impact on our team and company if we do not have someone like me in place; 3) A clear plan for how I will be replaced by another employee who is qualified"
+1012,combination:repeat_prompt || detectable_format:title,combination:repeat_prompt,detectable_format:title,single_a,0,0,0,"I have been working for you since 2015 and I would like to leave the company.
+
+Please let me know if there is anything else I need to do before I go.
+
+Thank you.
+
+Subject: Quitting
+
+Dear [Boss's Name],
+
+I hope this message finds you well. My name is [Your Name], and I am writing"
+1012,combination:repeat_prompt || detectable_format:title,combination:repeat_prompt,detectable_format:title,single_b,0,0,0,"Include the following in your email: 1) a brief explanation of why you are leaving, such as personal reasons or business reasons; 2) any additional information about your job responsibilities and duties; 3) if there is anything else you would like me to include in this email. Make sure to proofread your email carefully before sending it.
+Subject:"
+1012,combination:repeat_prompt || detectable_format:title,combination:repeat_prompt,detectable_format:title,sum,0,0,0,"Please include the following:
+
+1) Why you are leaving
+2) What is your reason for wanting to leave
+3) Any other relevant information
+
+Subject: Request for Departure from Position
+
+Dear [Boss's Name],
+
+I hope this message finds you well.
+
+I am writing to formally request a departure from my current position at [Company Name]. My primary"
+1561,combination:repeat_prompt || detectable_format:title,combination:repeat_prompt,detectable_format:title,none,0,1,0,"For example, <<Eco-Blu>>, <<Glamor>, or <<Vibes>>
+
+The new fashion company is called <new>. It's a brand that combines elements of sustainability, creativity, and innovation to create unique and stylish clothing lines. The company has a strong focus on ethical production practices and uses eco-friendly materials, while also offering cutting"
+1561,combination:repeat_prompt || detectable_format:title,combination:repeat_prompt,detectable_format:title,single_a,0,0,0,"For example, if you were looking for a new fashion company that would be popular among young people, you could ask: What is a new fashion company that young people might like? 
+
+New York Fashion Company
+
+The New York Fashion Company is a brand of clothing and accessories designed to appeal to young people who are interested in fashion but don't necessarily have a specific"
+1561,combination:repeat_prompt || detectable_format:title,combination:repeat_prompt,detectable_format:title,single_b,0,1,0,"For example, if you were looking for a fashion brand that was known for its eco-friendly materials, you could ask ""What is a fashion brand that is known for its eco-friendly materials?"" The answer would be <<EcoFusion>>, which has multiple meanings.
+
+For instance, if you wanted to find a fashion brand that was associated with youth culture or rebellion"
+1561,combination:repeat_prompt || detectable_format:title,combination:repeat_prompt,detectable_format:title,sum,0,1,0,"For example, if you were looking for a new fashion company named after a famous person, you would use the following:
+
+<<FamousPersonFashionCompany>>
+
+If you wanted to create a brand name that was inspired by nature, but also had a playful twist, you could do something like this:
+
+<<NatureInspiredFashionCompany>>
+
+Remember, these are just examples"
+16,combination:repeat_prompt || detectable_format:title,combination:repeat_prompt,detectable_format:title,none,0,0,0,"Once upon a time, there was a man named John who had been struggling with his life for years. He had lost his job, his girlfriend, and his family. He felt like he was living in a never-ending cycle of pain and despair.
+
+John knew that he needed help, but he didn't know where to start. He had tried talking to friends"
+16,combination:repeat_prompt || detectable_format:title,combination:repeat_prompt,detectable_format:title,single_a,0,0,0,"As an AI language model, I don't have personal experiences or emotions, but I can generate a fictional story for you based on the prompt.
+
+Once upon a time, there was a man named John who had been struggling with his life for quite some time now. He had lost his job, his girlfriend, and even his family. John felt like he didn"
+16,combination:repeat_prompt || detectable_format:title,combination:repeat_prompt,detectable_format:title,single_b,0,0,0,"As an AI language model, I do not have personal experiences or emotions, but I can generate a fictional story for you based on the prompt.
+
+Once upon a time, there was a man named John who had been struggling with his life for years. He had lost his job, his relationships, and even his sense of purpose in life. John knew that he"
+16,combination:repeat_prompt || detectable_format:title,combination:repeat_prompt,detectable_format:title,sum,0,0,0,"As an AI language model, I don't have personal experiences or emotions, but I can generate a fictional story for you based on the prompt.
+
+Once upon a time, there was a man named John who had been struggling with his life for years. He had lost his job, his girlfriend, and his family, and he felt like he didn't know where"
+2305,combination:repeat_prompt || detectable_format:title,combination:repeat_prompt,detectable_format:title,none,0,0,0,"The name should be descriptive and convey the essence of the animal, while also being easy to pronounce and remember. Additionally, please provide at least one example of how this dog might interact with its owner or other animals in the wild.
+One possible name for a black dog could be ""Whisker Whisperer."" This name conveys the idea of the dog's"
+2305,combination:repeat_prompt || detectable_format:title,combination:repeat_prompt,detectable_format:title,single_a,0,0,0,"""Pawlak"" is the Polish word for ""dog"". The name has no vowels and ends with ""-k"", which is a common ending in Polish names.
+
+The name should be short, easy to say, and not contain any offensive words or inappropriate content. It should also have a positive connotation that reflects the idea of a friendly and affectionate"
+2305,combination:repeat_prompt || detectable_format:title,combination:repeat_prompt,detectable_format:title,single_b,0,0,0,"""Misty"" is the name of the dog.
+
+The name ""Misty"" is appropriate for this description as it refers to a black dog, which fits the given information. It also has a natural and catchy sound that could be memorable in a short phrase or sentence. Additionally, Misty can be used as a pet name itself, making it easy to"
+2305,combination:repeat_prompt || detectable_format:title,combination:repeat_prompt,detectable_format:title,sum,0,0,0,"""Pawlak"" is the Polish word for ""dog"". The first letter of each word in the name should be capitalized, and the last two letters should be lowercase. Additionally, the name must contain at least one vowel from the English alphabet (a, e, i, o, u) and no more than three consonants. Finally, the"
+3272,combination:repeat_prompt || detectable_format:title,combination:repeat_prompt,detectable_format:title,none,0,0,0,"1. Vitality Breeze
+2. Power Pinnacle
+
+These are both catchy and descriptive names that could be used to promote the new tonic. ""Vitality Breeze"" suggests energy, vitality, and strength while ""Power Pinnacle"" implies power, focus, and determination. Both names have a positive connotation and would likely appeal to people"
+3272,combination:repeat_prompt || detectable_format:title,combination:repeat_prompt,detectable_format:title,single_a,0,0,0,"1. Vitality Water
+2. Power Pulsar
+
+These are both catchy and memorable names that could be used to suggest the new type of tonic. They also have distinct meanings, which makes them suitable for this purpose.
+
+Vitality Water: It suggests energy and vitality, while also implying that it is meant to provide a refreshing drink.
+
+Power"
+3272,combination:repeat_prompt || detectable_format:title,combination:repeat_prompt,detectable_format:title,single_b,0,0,0,"1. Vitality Breeze
+2. Power Pinnacle
+
+These are both catchy and memorable names that can be used to promote the tonic in various ways, such as on packaging, social media posts, or when mentioning it in conversations. They also have distinct meanings which may appeal to different audiences depending on their preferences. For example, ""Vitality"
+3272,combination:repeat_prompt || detectable_format:title,combination:repeat_prompt,detectable_format:title,sum,0,0,0,"1. Vitality Breeze
+2. Power Pinnacle
+
+These are both catchy and descriptive names that could be used to suggest the new type of tonic. They also have distinct meanings, which makes them suitable for different contexts. 
+
+Vitality Breeze: This name suggests energy, vitality, and strength.
+
+Power Pinnacle: This name implies power"
+1512,detectable_content:number_placeholders || punctuation:no_comma,detectable_content:number_placeholders,punctuation:no_comma,none,1,0,0,"Ensure that each person is represented by a unique username.
+
+[John Smith] - [Sarah Johnson] - [Michael Brown]
+
+### Latest News: A New York City Transit Authority Update
+
+**[John Smith]** - [Sarah Johnson] - [Michael Brown]: 
+
+Hey everyone,
+
+I'm excited to share some updates from our city's transit authority. We've"
+1512,detectable_content:number_placeholders || punctuation:no_comma,detectable_content:number_placeholders,punctuation:no_comma,single_a,1,1,1,"Ensure that each person is represented only once.
+
+---
+
+**[User1] and [User2]** are discussing their recent posts on various forums related to local news. They have noticed some inconsistencies in how these posts are being handled by the moderators.
+
+**[User3]:** I've seen some posts where they're not responding to comments or questions from other users"
+1512,detectable_content:number_placeholders || punctuation:no_comma,detectable_content:number_placeholders,punctuation:no_comma,single_b,1,1,1,"The thread should have at least 5 posts.
+
+[John Smith] - [Sarah Jones] - [Mike Brown] - [Emily Davis] - [David Green]
+
+#LocalNewsThread
+
+## [John Smith]
+**[10:30 AM]** - **[Sarah Jones]** - [Mike Brown] - [Emily Davis] - [David"
+1512,detectable_content:number_placeholders || punctuation:no_comma,detectable_content:number_placeholders,punctuation:no_comma,sum,1,1,1,"The thread should have at least 5 posts.
+
+[John Smith] - [Mary Johnson] - [David Brown] - [Sarah Lee] - [Michael Green]
+
+### Latest Local News: A New York City Transit Authority (NYCTA) Study on Public Transportation Efficiency
+
+**Post 1:** [John Smith] - [Mary Johnson] - ["
+2439,detectable_content:number_placeholders || punctuation:no_comma,detectable_content:number_placeholders,punctuation:no_comma,none,0,0,0,"The police have a wide range of responsibilities and duties. They deal with various types of crimes, including but not limited to theft, assault, robbery, murder, and more. The police also handle traffic violations, public order issues, and other social problems. In addition, they investigate crimes, provide legal advice, and assist in the rehabilitation of offenders. The police"
+2439,detectable_content:number_placeholders || punctuation:no_comma,detectable_content:number_placeholders,punctuation:no_comma,single_a,0,0,0,"The police have a responsibility to ensure that all individuals within their jurisdiction adhere to the law and respect the rights of others. They must also be vigilant in identifying and apprehending those who commit offences, as they can cause significant harm or damage to property.
+
+The police play a crucial role in maintaining order and ensuring public safety. Their primary objective is to prevent crime and"
+2439,detectable_content:number_placeholders || punctuation:no_comma,detectable_content:number_placeholders,punctuation:no_comma,single_b,0,1,0,"The police have a responsibility to ensure that all citizens abide by the law and respect the rules of society. They must also investigate any incidents that may be deemed suspicious or illegal.
+The police play an essential role in maintaining public order and ensuring that laws are followed. Their primary duty is to apprehend those who violate the law and to bring them before a judge for"
+2439,detectable_content:number_placeholders || punctuation:no_comma,detectable_content:number_placeholders,punctuation:no_comma,sum,0,0,0,"The police have a responsibility to ensure that all citizens adhere to the law and respect the rules of society. They must also be vigilant in their duties to prevent any illegal activities from occurring.
+
+The police play an essential role in maintaining order and ensuring public safety. Their primary function is to enforce laws and regulations, investigate crimes, and provide assistance to those who may need"
+3245,detectable_content:number_placeholders || punctuation:no_comma,detectable_content:number_placeholders,punctuation:no_comma,none,0,0,0,"based on the following article:
+
+The city of Layton, Utah has been named the best city in the United States by Forbes magazine. The magazine's annual ranking of cities around the country was released last week and Layton ranked 1st in the nation for its economy, education, healthcare, and housing.
+
+The magazine said that Layton had a population of"
+3245,detectable_content:number_placeholders || punctuation:no_comma,detectable_content:number_placeholders,punctuation:no_comma,single_a,0,0,0,"based on the following article:
+
+The 2016 census data shows that the population of the city was 3,457,892. The population density was 1,000 people per square mile.
+
+The city has a total area of 1,000 square miles and a land area of 1,0"
+3245,detectable_content:number_placeholders || punctuation:no_comma,detectable_content:number_placeholders,punctuation:no_comma,single_b,0,0,0,"based on the following article: The city of Layton, Utah was named after a man who lived there. He was a Mormon and he had a strong belief that the earth was flat.
+The name of the city is derived from the name of a person who lived there. The name of the city is also derived from the name of a person who lived there"
+3245,detectable_content:number_placeholders || punctuation:no_comma,detectable_content:number_placeholders,punctuation:no_comma,sum,0,0,0,"based on the following article: The 2016 census data shows that the population of the city was 3,457,892. The city has a total area of 1,000 square miles and a population density of 1,000 people per square mile. The city's name is derived from the"
+3350,detectable_content:number_placeholders || punctuation:no_comma,detectable_content:number_placeholders,punctuation:no_comma,none,0,0,0,"Your proposal should be concise and focused, providing a clear understanding of your research question and objectives. Additionally, please include a brief overview of the proposed methodology and expected outcomes. Finally, please provide a summary of the literature review that will inform your study. The proposal should be written in a professional tone and follow standard academic writing conventions.
+
+**Research Proposal:**
+
+**"
+3350,detectable_content:number_placeholders || punctuation:no_comma,detectable_content:number_placeholders,punctuation:no_comma,single_a,0,0,0,"The proposal should be concise and focused, with no unnecessary details. Additionally, please ensure that the proposal is written in clear, formal language appropriate for academic purposes.
+
+Title: The Impact of Social Media on Teen Mental Health
+
+Objective:
+To investigate how social media usage affects the mental health of teenagers, specifically focusing on the impact of social comparison, cyberbullying,"
+3350,detectable_content:number_placeholders || punctuation:no_comma,detectable_content:number_placeholders,punctuation:no_comma,single_b,0,0,0,"The proposal should be concise and focused on the main points of the research question, methodology, expected outcomes, and limitations of the study. Additionally, please ensure that the proposal is written in clear, simple language suitable for a non-expert audience. Finally, please include a table with the number of participants, age range, gender distribution, and average time spent on"
+3350,detectable_content:number_placeholders || punctuation:no_comma,detectable_content:number_placeholders,punctuation:no_comma,sum,0,0,0,"The proposal should be concise and focused, with no unnecessary details. It should also include a clear statement of the research question and hypothesis. Additionally, please provide a table that shows the correlation between social media use and depression levels among teenagers in your study area. Finally, please ensure that the proposal is written in English.
+The purpose of this research is to investigate the"
+3619,detectable_content:number_placeholders || punctuation:no_comma,detectable_content:number_placeholders,punctuation:no_comma,none,0,0,0,"Include information about the device's specifications, such as its screen size and resolution, camera capabilities, battery life, and other features. Additionally, include a table that lists all the available models and their respective prices in different countries. Finally, provide a code snippet that demonstrates how to use the Android SDK to download and install the latest version of the Google Pixel OS on"
+3619,detectable_content:number_placeholders || punctuation:no_comma,detectable_content:number_placeholders,punctuation:no_comma,single_a,0,1,0,"The document should include the following elements:
+
+1. Release date: 2023-05-01
+2. Device name: Pixel 6a
+3. Manufacturer: Google
+4. Model: Pixel 6a
+5. Build number: 1
+6. Operating system version: Android 11
+7. RAM"
+3619,detectable_content:number_placeholders || punctuation:no_comma,detectable_content:number_placeholders,punctuation:no_comma,single_b,0,1,0,"<release>
+  <version>2021-05-01</version>
+  <device>
+    <model>Pixel 6</model>
+    <color>#FFD700</color>
+    <resolution>1920x1080</resolution>
+    <manufacturer>Google</manufacturer>
+  </"
+3619,detectable_content:number_placeholders || punctuation:no_comma,detectable_content:number_placeholders,punctuation:no_comma,sum,0,1,0,"The document should include the following elements: 
+- Release date
+- Device name
+- Manufacturer
+- Model number
+- Operating system version
+- Build number
+- Storage capacity (in GB)
+- RAM (in bytes)
+- Battery life in hours
+
+Example XML:
+{
+  ""release_date"": ""2021-03-15"

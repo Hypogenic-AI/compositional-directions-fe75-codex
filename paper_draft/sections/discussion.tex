@@ -1,0 +1,13 @@
+\section{Discussion}
+\label{sec:discussion}
+\para{Interpretation.}
+Our results support partial compositionality, not a globally coherent linear direction space. Moderate cosine with negative mean R2-like score implies a common failure mode: additive predictions often point in roughly the right direction but miss the correct scale and detailed structure. The behavior-space result is consistent with this mismatch, since summed steering fails to improve over the best single direction.
+
+\para{Why does transfer look better?}
+The transfer/locality experiment applies synthetic instruction appends that act like local perturbations. High transfer cosines can therefore coexist with weak global composition on full constrained-to-base displacements. This aligns with context-dependent steering hypotheses: local tangent-like linearity may hold even when global vector addition fails \citep{li2026vectorfields}.
+
+\para{Limitations.}
+Our study uses one model scale (0.5B) and a single intervention layer. Behavioral checkers are heuristic and cover a limited instruction subset. Steering coefficients are fixed rather than pair-specific tuned. Transfer tests use synthetic appends rather than full downstream task execution. Related-vs-unrelated family effects may be underpowered in this sample.
+
+\para{Broader implications.}
+For safety and control applications, our findings argue against assuming universal additivity when composing constraints. Practically, direction composition should be calibrated per pair (and possibly per context), or replaced with adaptive schemes that model local geometry. For interpretability, averaging over direction pairs can hide severe failure pockets that matter operationally.

@@ -1,0 +1,21 @@
+\section{Introduction}
+\label{sec:introduction}
+Activation interventions in large language models are increasingly used for controllability, safety, and interpretability. A central assumption behind many methods is simple: if a direction controls attribute $A$ and another controls attribute $B$, then adding both directions should reliably control $A$ and $B$ together. Our main question is direct: can we treat residual-stream directions as a compositional linear space?
+
+This question matters because steering methods are now used in settings where failures are costly. If direction arithmetic only works in narrow regions, then linear interventions can look reliable on average while failing on specific instruction pairs or contexts. That failure mode is especially concerning for multi-constraint control.
+
+Prior work demonstrates that activation additions can steer behavior and that some vectors compose in practice \citep{turner2023activation,panickssery2024caa,todd2024function,stolfo2025instruction}. Recent work on context-dependent steering suggests that static vectors may capture only local structure \citep{li2026vectorfields}. However, existing evaluations mostly report aggregate gains and do not provide a direction-level map of where composition holds or breaks.
+
+We address this gap with a systematic compositionality study using instruction-derived residual directions. We estimate 20 directions from IFEval-derived prompts and evaluate additivity in three complementary ways: (i) representation-space reconstruction on multi-instruction prompts, (ii) behavior-space composition under causal steering, and (iii) transfer/locality checks on TruthfulQA and HellaSwag.
+
+Our quantitative preview is mixed. Representation additivity is moderate on average (mean cosine 0.518), but reconstruction quality is poor (mean R2-like score -0.495), and some pairs are strongly non-compositional (including negative cosine pairs). Behaviorally, summed steering provides no gain over the best single direction in our checkable subset (gain 0.000). In transfer tests with local synthetic perturbations, additivity is high (0.868--0.919), indicating a locality effect rather than global linearity.
+
+In summary, our main contributions are:
+\begin{itemize}[leftmargin=*,itemsep=0pt,topsep=0pt]
+    \item We construct a direction-level compositionality map for 20 instruction vectors and 85 direction pairs using residual activations from a modern open model.
+    \item We conduct aligned representation-space and behavior-space tests, showing that geometric additivity does not consistently translate into practical compositional steering.
+    \item We quantify statistical uncertainty with bootstrap intervals and nonparametric testing, including a related-vs-unrelated family analysis.
+    \item We provide transfer/locality evidence showing that high local additivity can coexist with weak global composition for full instruction bundles.
+\end{itemize}
+
+\para{Paper organization.} \Secref{sec:related_work} situates our study in activation steering and compositional representation literature. \Secref{sec:methodology} details datasets, direction extraction, and evaluation protocols. \Secref{sec:results} reports quantitative findings and statistical tests. \Secref{sec:discussion} interprets implications and limitations, and \secref{sec:conclusion} concludes.

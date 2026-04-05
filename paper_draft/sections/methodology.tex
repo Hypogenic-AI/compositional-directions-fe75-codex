@@ -1,0 +1,42 @@
+\section{Methodology}
+\label{sec:methodology}
+\subsection{Problem Setup}
+We study whether instruction directions in a transformer residual stream are compositionally additive. For a prompt $x$, let $h_\ell(x)$ be the last-token residual activation at layer $\ell$. For instruction $i$, we estimate a direction $\vd_i$ from paired constrained/de-constrained prompts. For a multi-instruction prompt with set $S$, we compare observed displacement and additive prediction:
+\begin{align}
+\Delta_{\text{obs}}(x, S) &= h_\ell(x_{\text{constrained}}) - h_\ell(x_{\text{base}}), \\
+\Delta_{\text{pred}}(S) &= \sum_{i \in S} \vd_i.
+\end{align}
+Our core question is whether $\Delta_{\text{pred}}$ is a good approximation to $\Delta_{\text{obs}}$ across pairs and contexts.
+
+\subsection{Model, Data, and Direction Extraction}
+\para{Model and implementation.}
+We use \qwenmodel with `torch 2.5.1+cu124`, `transformers 5.5.0`, `datasets 4.8.4`, `scipy 1.17.1`, and `pandas 3.0.2`. Experiments run on two RTX 3090 GPUs (24GB each). We fix seed 42 and intervene at middle layer 12 of 24.
+
+\para{Datasets.}
+Direction discovery and in-domain evaluation use 541 IFEval-derived examples from \texttt{ifeval\_wo\_instructions.jsonl}. Transfer checks use TruthfulQA validation (817 prompts) and HellaSwag validation (10,042 prompts).
+
+\para{Direction estimation.}
+For each instruction ID with at least 10 single-instruction examples, we compute per-example residual differences between constrained and de-constrained forms and take the mean. This yields 20 instruction directions.
+
+\subsection{Evaluation Protocols}
+\para{Experiment 1: representation compositionality.}
+On multi-instruction prompts, we evaluate additivity with:
+\begin{itemize}[leftmargin=*]
+    \item cosine alignment: $\cos(\Delta_{\text{obs}}, \Delta_{\text{pred}})$,
+    \item relative norm error: $\lvert\|\Delta_{\text{pred}}\| - \|\Delta_{\text{obs}}\|\rvert / \|\Delta_{\text{obs}}\|$,
+    \item R2-like reconstruction score against the observed displacement baseline.
+\end{itemize}
+
+\para{Experiment 2: behavioral compositionality.}
+For exactly two checkable instructions per prompt, we generate under four conditions: none, $A$, $B$, and $A{+}B$. Automatic rule-based checkers score joint satisfaction. We report gain over the best single condition.
+
+\para{Experiment 3: transfer/locality.}
+On TruthfulQA and HellaSwag prompts, we append synthetic instruction snippets and test local additivity:
+\begin{align}
+\Delta_{\text{obs}} &= h(x+i+j)-h(x), \\
+\Delta_{\text{pred}} &= [h(x+i)-h(x)] + [h(x+j)-h(x)].
+\end{align}
+We measure cosine alignment between these two vectors.
+
+\subsection{Baselines and Statistical Analysis}
+Baselines include no steering, single-direction steering, and best-single oracle comparison for additive steering. We compute 95\% bootstrap confidence intervals for key means and use Mann-Whitney U for related-vs-unrelated pair comparison. We also run a full rerun with the same seed and compare summary metrics for determinism.

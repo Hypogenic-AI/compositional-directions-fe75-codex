@@ -1,0 +1,13 @@
+\section{Related Work}
+\label{sec:related_work}
+\para{Activation steering with static directions.}
+ActAdd-style methods show that residual-stream additions can causally shift model behavior without retraining \citep{turner2023activation}. CAA extends this idea using contrastive prompt pairs and demonstrates robust control on several tasks \citep{panickssery2024caa}. Instruction-focused steering studies further show gains on constraint-following benchmarks, including multi-instruction settings \citep{stolfo2025instruction}. These results establish that linear interventions can work. Unlike these studies, we focus on whether the underlying direction geometry is compositional at the pair level rather than only measuring end-task average improvements.
+
+\para{Function vectors and mechanistic evidence.}
+Function vectors identify causal task signals in model internals and report partial compositional behavior for some task combinations \citep{todd2024function}. This line of work motivates our representation-level diagnostics. Our analysis complements it by testing instruction families derived from real constrained prompts and by explicitly quantifying reconstruction error, not only alignment.
+
+\para{Beyond static linearity: dynamic and local control.}
+Recent methods propose adaptive weighting or generated vectors to improve multi-attribute control under context shift \citep{scalena2024dynamic,sun2025hypersteer}. Steering vector-field approaches model context-dependent local directions and report stronger reliability than fixed vectors \citep{li2026vectorfields}. Our findings are consistent with this transition: local additive structure appears strong in transfer perturbation tests, while global composition over full instruction bundles is uneven.
+
+\para{Representation factorization and compositionality.}
+Theory and synthetic studies suggest transformers can learn partially factored internal representations, but factorization quality depends on data and dependencies \citep{shai2026factored}. Mechanistic progress metrics also emphasize that internal structure can be stage-dependent and non-uniform \citep{nanda2023grokking}. We contribute empirical evidence in a practical steering setup, showing a mixed regime where some direction pairs are additive and others interfere substantially.

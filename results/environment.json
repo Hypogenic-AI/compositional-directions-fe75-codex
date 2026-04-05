@@ -1,0 +1,10 @@
+{
+  "python": "Python 3.12.8",
+  "torch": "2.5.1+cu124",
+  "transformers": "5.5.0",
+  "datasets": "4.8.4",
+  "cuda_available": true,
+  "cuda_device_count": 2,
+  "gpu_name_0": "NVIDIA GeForce RTX 3090",
+  "gpu_name_1": "NVIDIA GeForce RTX 3090"
+}

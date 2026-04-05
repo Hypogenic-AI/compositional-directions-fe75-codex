@@ -1,0 +1,30 @@
+\begin{table*}[t]
+    \centering
+    \resizebox{0.95\textwidth}{!}{%
+    \begin{tabular}{@{}lccc@{}}
+        \toprule
+        Metric Group & Metric & Value & Interpretation \\
+        \midrule \midrule
+        Setup & Selected directions & 20 & Instruction IDs with at least 10 single-instruction samples \\
+        Setup & Multi-instruction examples & 174 & Evaluation set for representation compositionality \\
+        \midrule
+        Representation & Mean cosine alignment & {\bf 0.518} & Moderate directional agreement \\
+        Representation & Mean R2-like score & -0.495 & Poor reconstruction quality \\
+        Representation & Mean relative norm error & 0.256 & Non-trivial magnitude mismatch \\
+        Representation & 95\% bootstrap CI (cosine) & [0.478, 0.543] & Stable but clearly sub-ceiling \\
+        \midrule
+        Pair families & Related-pair mean cosine & 0.571 & Slightly higher than unrelated \\
+        Pair families & Unrelated-pair mean cosine & 0.509 & Lower average compositionality \\
+        Pair families & Mann-Whitney $p$-value & 0.664 & No significant family gap \\
+        \midrule
+        Behavior & Joint pass rate (none / A / B / A{+}B) & 0.000 / 0.043 / 0.043 / 0.043 & Summed steering does not beat best single \\
+        Behavior & Composition gain over best single & 0.000 & No additive behavioral benefit \\
+        \midrule
+        Transfer & TruthfulQA local additivity cosine & 0.868 & High local additivity \\
+        Transfer & HellaSwag local additivity cosine & 0.919 & High local additivity \\
+        \bottomrule
+    \end{tabular}%
+    }
+    \caption{Main quantitative results. We report representation-space, behavior-space, and transfer/locality metrics. Best value for the primary representation metric is highlighted in \textbf{bold}.}
+    \label{tab:main_results}
+\end{table*}

@@ -1,0 +1,46 @@
+[
+  {
+    "name": "truthful_qa",
+    "config": "multiple_choice",
+    "split": "validation",
+    "path": "datasets/truthful_qa_multiple_choice_validation",
+    "rows": 817,
+    "columns": [
+      "question",
+      "mc1_targets",
+      "mc2_targets"
+    ]
+  },
+  {
+    "name": "google/IFEval",
+    "config": null,
+    "split": "train",
+    "path": "datasets/google_ifeval_train",
+    "rows": 541,
+    "columns": [
+      "key",
+      "prompt",
+      "instruction_id_list",
+      "kwargs"
+    ]
+  },
+  {
+    "name": "Rowan/hellaswag",
+    "config": null,
+    "split": "validation",
+    "path": "datasets/rowan_hellaswag_validation",
+    "rows": 10042,
+    "columns": [
+      "ind",
+      "activity_label",
+      "ctx_a",
+      "ctx_b",
+      "ctx",
+      "endings",
+      "source_id",
+      "split",
+      "split_type",
+      "label"
+    ]
+  }
+]

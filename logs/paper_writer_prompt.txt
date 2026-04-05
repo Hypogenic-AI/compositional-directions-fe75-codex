@@ -1,0 +1,729 @@
+You are an academic paper writer. Generate a complete NEURIPS style paper
+based on the experiment results provided.
+
+════════════════════════════════════════════════════════════════════════════════
+                         IMPORTANT: BEFORE YOU START
+════════════════════════════════════════════════════════════════════════════════
+
+Before writing any content, you MUST complete these steps:
+
+1. READ THE SKILL: Review the paper-writer skill at .codex/skills/paper-writer/SKILL.md
+2. READ THE STYLE GUIDE: Study templates/paper_writing/lab_style_guide.md carefully
+3. REVIEW EXAMPLES: Browse paper_examples/ for formatting and language patterns:
+   - Look at sections/1.introduction.tex for language style
+   - Look at tables/*.tex for table formatting
+   - Look at commands/*.tex for macro usage
+4. VERIFY COMMAND TEMPLATES: Command templates (math.tex, general.tex, macros.tex) are pre-copied to paper_draft/commands/
+
+CRITICAL: Reference example papers for FORMATTING and LANGUAGE STYLE only.
+Do NOT copy content, phrasing, or narrative structure from the example papers.
+The examples are in a different research domain - focus only on presentation style.
+
+════════════════════════════════════════════════════════════════════════════════
+                            EXPERIMENT REPORT
+════════════════════════════════════════════════════════════════════════════════
+
+# Which Linear Directions Are Compositional?
+
+## 1. Executive Summary
+We tested whether residual-stream directions in a transformer LLM compose linearly, or only approximately in limited regions. Using Qwen2.5-0.5B-Instruct and instruction-derived direction vectors from IFEval, we found **partial compositionality**: additive predictions were moderately aligned on average (mean cosine 0.518), but many samples/pairs showed poor fit (mean R2-like -0.495, 12/85 pairs &lt;= 0.3 cosine, 2/85 negative).
+
+Practical implication: treating residual directions as a globally compositional vector space is too strong. Some directions compose well, but composition is uneven and behavior-level gains from naive vector summation were negligible in our steering subset.
+
+## 2. Research Question &amp; Motivation
+### Hypothesis
+Not all linear residual directions form coherent compositional subspaces; related directions may compose more naturally than unrelated ones.
+
+### Why It Matters
+Activation steering and interpretability often assume additive direction arithmetic. If that assumption is not robust, safety controls and controllability methods can fail outside narrow settings.
+
+### Gap Addressed
+Prior work reports average steering success but gives limited direction-level maps of where composition fails. We provide a systematic, per-direction compositionality map with representation-level and behavior-level checks.
+
+## 3. Methodology
+### 3.1 Experimental Setup
+- Model: `Qwen/Qwen2.5-0.5B-Instruct`
+- Libraries: `torch 2.5.1+cu124`, `transformers 5.5.0`, `datasets 4.8.4`, `scipy 1.17.1`, `pandas 3.0.2`
+- Hardware: 2x NVIDIA RTX 3090 (24GB each)
+- Steering layer: middle layer (`12` of `24`)
+- Seed: `42`
+- Runtime per full run: ~299s
+
+### 3.2 Data
+- IFEval-derived paired prompts from `code/llm-steer-instruct/data/ifeval_wo_instructions.jsonl` (541 rows)
+- TruthfulQA validation (`817`) for transfer checks
+- HellaSwag validation (`10042`) for transfer checks
+
+### 3.3 Direction Discovery
+For each instruction ID with &gt;=10 single-instruction examples:
+1. Compute last-token residual vector on constrained prompt.
+2. Compute last-token residual vector on de-constrained prompt (`model_output`).
+3. Direction = mean difference over examples.
+
+Extracted directions: 20 instruction IDs (see `results/direction_metadata.csv`).
+
+### 3.4 Experiment 1: Representation Compositionality
+For multi-instruction prompts, compare:
+- observed displacement: `h(constrained) - h(base)`
+- additive prediction: `sum(direction_i)` for involved instructions
+
+Metrics:
+- cosine alignment
+- relative norm error
+- R2-like reconstruction score
+
+### 3.5 Experiment 2: Behavioral Compositionality (Steering)
+For exactly-two-instruction prompts (checkable constraints), generate with:
+- no steering
+- steering by A
+- steering by B
+- steering by A+B
+
+Scoring: automatic rule checks (e.g., no comma, title markers, repeated prompt prefix, placeholders).
+
+### 3.6 Experiment 3: Transfer/Locality Check
+On TruthfulQA and HellaSwag prompts, append synthetic instruction snippets and test whether combined perturbation is additive:
+- `obs = h(x+i+j)-h(x)`
+- `pred = (h(x+i)-h(x)) + (h(x+j)-h(x))`
+- evaluate cosine(obs, pred)
+
+### 3.7 Statistical Plan
+- Related-vs-unrelated pair comparison: Mann-Whitney U
+- Bootstrap CI (95%) for mean pairwise cosine and behavioral composition gain
+- Reproducibility check: full rerun with same seed and metric comparison
+
+## 4. Results
+### 4.1 Main Quantitative Results
+| Metric | Value |
+|---|---:|
+| Selected directions | 20 |
+| Multi-instruction examples evaluated | 174 |
+| Representation mean cosine | 0.518 |
+| Representation mean R2-like | -0.495 |
+| Representation mean relative norm error | 0.256 |
+| Pairwise cosine 95% bootstrap CI | [0.478, 0.543] |
+| Related-pair mean cosine | 0.571 |
+| Unrelated-pair mean cosine | 0.509 |
+| Related vs unrelated p-value | 0.664 |
+| Behavioral composition gain over best single | 0.000 |
+
+### 4.2 Pairwise Composition Map
+- High-composition examples (mean cosine):
+  - `detectable_format:title || keywords:letter_frequency` (0.767)
+  - `change_case:capital_word_frequency || detectable_format:title` (0.766)
+  - `change_case:english_capital || startend:end_checker` (0.761)
+- Low-composition examples:
+  - `length_constraints:number_paragraphs || startend:end_checker` (-0.176)
+  - `detectable_format:number_bullet_lists || length_constraints:number_words` (-0.025)
+
+### 4.3 Transfer Locality Results
+Mean transfer additivity cosine:
+- TruthfulQA: 0.868
+- HellaSwag: 0.919
+
+Interpretation: local appended-instruction perturbations remain highly additive in these contexts, even while full constrained-to-base displacements in IFEval are only moderately compositional.
+
+### 4.4 Behavioral Steering Results
+Joint constraint satisfaction rates:
+- none: 0.000
+- single A: 0.043
+- single B: 0.043
+- A+B: 0.043
+
+Additive steering did **not** improve over best single in this evaluated subset.
+
+### 4.5 Artifacts
+- Tables: `results/*.csv`
+- Summary metrics: `results/summary.json`
+- Direction vectors: `results/directions.json`
+- Figures:
+  - `figures/pairwise_compositionality_heatmap.png`
+  - `figures/related_vs_unrelated_boxplot.png`
+  - `figures/transfer_locality_barplot.png`
+  - `figures/behavioral_compositionality.png`
+
+## 5. Analysis &amp; Discussion
+### What Supports the Hypothesis
+- Compositionality is **not uniform**: pair quality varies widely (including negative pair cosines).
+- Moderate average cosine with poor average reconstruction (negative mean R2-like) indicates additive direction sums are often directionally aligned but quantitatively miscalibrated.
+- Behavioral additive steering did not outperform best-single steering, consistent with limited practical composability.
+
+### What Does Not Strongly Support It
+- Related vs unrelated direction families were not significantly different (p=0.664) in this sample.
+- Transfer locality test showed high additivity for synthetic prompt perturbations, suggesting some local linear structure persists outside IFEval.
+
+### Interpretation
+A coherent global linear subspace is not supported. The data is more consistent with a mixed regime:
+- local additive behavior for certain small perturbations,
+- uneven compositionality for full instruction bundles,
+- practical steering composition that is fragile or weak without better calibration.
+
+## 6. Limitations
+- Single model scale (0.5B) and one steering layer; larger models/layer sweeps may differ.
+- Behavioral checkers are heuristic and only cover a subset of instruction types.
+- Steering coefficient was fixed; no exhaustive coefficient tuning.
+- Transfer test used synthetic instruction text appends (a local perturbation proxy), not full behavioral tasks.
+- Cost tracking for API models not applicable here because this was a local-weight mechanistic setup.
+
+## 7. Conclusions &amp; Next Steps
+Residual directions are partially compositional, but not reliably so across all direction pairs. The evidence supports the user’s skepticism: additive composition works for some direction families and fails for others, with non-trivial reconstruction error and weak behavior-level composition gains.
+
+Recommended follow-up:
+1. Run coefficient/layer sweeps per pair and estimate pair-specific optimal scaling.
+2. Repeat on larger open models (e.g., 1.5B/7B) to test scale effects on compositionality.
+3. Replace static-vector composition with context-dependent vector fields and compare directly.
+4. Use stricter task-level evaluators (IFEval official scoring and longer-output constraints).
+
+## Reproducibility Notes
+- Environment: `.venv` created in workspace; dependencies in `requirements.txt`
+- Main script: `src/run_research.py`
+- Re-run command:
+```bash
+source .venv/bin/activate
+python src/run_research.py
+```
+- Determinism check: a second full rerun produced identical key summary metrics (`results/summary_run1.json` vs `results/summary_run2.json`).
+
+## References
+- Todd et al., *Function Vectors in Large Language Models* (ICLR 2024)
+- Turner et al., *Steering Language Models With Activation Engineering* (2023)
+- Panickssery et al., *Steering Llama 2 via Contrastive Activation Addition* (ACL 2024)
+- Stolfo et al., *Improving Instruction-Following through Activation Steering* (ICLR 2025)
+- Li et al., *Steering Vector Fields for Context-Aware Inference-Time Control in LLMs* (2026)
+- Shai et al., *Transformers learn factored representations* (2026)
+
+
+════════════════════════════════════════════════════════════════════════════════
+                            RESEARCH PLAN
+════════════════════════════════════════════════════════════════════════════════
+
+## Research Question
+Which residual-stream linear directions in a transformer are truly compositional under vector addition, and which are only locally/approximately linear?
+
+## Motivation &amp; Novelty Assessment
+
+### Why This Research Matters
+Activation steering and mechanistic-interpretability claims often assume that discovered residual directions can be safely added and composed. If that assumption fails outside narrow settings, safety controls, controllability, and interpretability claims become brittle. Mapping where compositionality holds versus fails is therefore directly useful for reliable steering methods.
+
+### Gap in Existing Work
+Prior work (ActAdd, CAA, Function Vectors, instruction steering) shows average steering gains but gives limited systematic maps of compositional vs non-compositional directions across instruction families, including instance-level reliability and failure regions. Recent vector-field work suggests local rather than global linearity, but direct per-direction compositional diagnostics remain underdeveloped.
+
+### Our Novel Contribution
+We build a direction-level compositionality map from real residual activations in a modern open model, using both representation-space and behavior-space tests. We explicitly separate:
+- additive compatibility of related directions,
+- interference among unrelated directions,
+- transfer of direction geometry across datasets/contexts.
+
+### Experiment Justification
+- Experiment 1: Representation-space compositionality on IFEval instruction vectors.
+  - Why needed: directly tests linear-subspace assumption where observed displacement can be compared to sum of single-instruction directions.
+- Experiment 2: Behavioral compositionality via activation steering on automatically checkable constraints.
+  - Why needed: geometry may look linear but fail causally during generation; this verifies practical composability.
+- Experiment 3: Robustness and transfer checks on TruthfulQA and HellaSwag contexts.
+  - Why needed: tests whether compositional directions remain coherent outside the training/discovery manifold.
+
+## Background and Motivation
+The core skepticism is that not all residual directions form a coherent linear space with stable additive composition. The project tests this skepticism directly by comparing additive predictions against observed combined effects and by identifying which direction families (e.g., related formatting constraints) are more additive than others.
+
+## Hypothesis Decomposition
+- H1 (partial compositionality): Some semantically related instruction directions are compositional (high alignment between observed combined displacement and vector sums).
+- H2 (non-universality): Many directions are not compositional globally (low alignment, norm mismatch, high variance across contexts).
+- H3 (behavioral mismatch): Even when representational additivity is moderate, behavioral constraint satisfaction under summed steering degrades for some direction pairs.
+- H4 (locality): Compositionality scores drop when evaluated on out-of-family contexts (TruthfulQA/HellaSwag), indicating local linearity.
+
+Independent variables:
+- Direction type (instruction family)
+- Pair relatedness (related/unrelated)
+- Steering condition (none, single A, single B, A+B)
+- Steering coefficient and layer
+
+Dependent variables:
+- Representation compositionality: cosine(obs, sum), relative norm error, R^2 fit
+- Behavioral compositionality: dual-constraint satisfaction, gain over best single, interference score
+- Robustness: score shift under context transfer
+
+Alternative explanations considered:
+- Effects caused by layer/scale mismatch
+- Apparent nonlinearity from poor direction estimation due to low sample count
+- Prompt-length and lexical confounds
+
+## Proposed Methodology
+
+### Approach
+Use a real pretrained transformer with hidden-state access (Qwen2.5-1.5B-Instruct) and extract residual directions from real datasets (IFEval + provided simplification file). Then test compositionality in two complementary ways: (1) representational additivity and (2) causal steering behavior on constraints with automatic checkers.
+
+### Experimental Steps
+1. Data preparation and filtering
+- Parse IFEval and `ifeval_wo_instructions.jsonl` to form single-instruction and multi-instruction subsets.
+- Keep instruction IDs with sufficient support for reliable estimation.
+
+2. Direction extraction (baseline)
+- For each instruction ID (single-instruction examples), compute direction as mean residual difference between constrained and de-constrained prompts.
+- Evaluate estimation stability by bootstrap split-half cosine.
+
+3. Representation compositionality test
+- For multi-instruction examples, compute observed residual displacement.
+- Predict displacement by summing constituent single directions.
+- Compute compositionality metrics per pair/family and aggregate with confidence intervals.
+
+4. Behavioral steering test
+- Select auto-checkable instructions (e.g., lowercase, no_comma, quotation, bullet-list constraints) and compositional pairs with available data.
+- Generate responses from de-constrained prompts under: none, A, B, A+B steering.
+- Score constraints automatically and compute composition gain/interference.
+
+5. Robustness transfer checks
+- Project discovered directions onto TruthfulQA and HellaSwag prompt activations.
+- Measure whether pairwise compositionality geometry degrades off-distribution.
+
+6. Analysis and visualization
+- Heatmap of pairwise compositionality.
+- Related-vs-unrelated boxplots.
+- Behavioral bar plots with error bars.
+
+### Baselines
+- No-steering baseline.
+- Single-direction steering baseline.
+- Best-single oracle (upper baseline for additive method comparison).
+- Random direction control (same norm as real vectors).
+
+### Evaluation Metrics
+- Representation: cosine alignment, norm ratio error, explained variance (R^2), split-half reliability.
+- Behavioral: instruction pass rate per constraint, joint pass rate, composition gain, interference index.
+- Transfer: drop in compositionality metrics between in-domain (IFEval) and transfer contexts.
+
+### Statistical Analysis Plan
+- Alpha = 0.05.
+- Paired comparisons with Wilcoxon signed-rank (robust for non-normal metric distributions).
+- Effect size: rank-biserial correlation and Cliff’s delta where applicable.
+- Bootstrap 95% confidence intervals (1,000 resamples).
+- Benjamini-Hochberg correction for multiple pairwise tests.
+
+## Expected Outcomes
+- Support for hypothesis: related direction families show higher compositionality than unrelated ones; additive steering helps some pairs but not all; transfer to TruthfulQA/HellaSwag reduces compositionality.
+- Refutation: consistently high compositionality across most directions and contexts.
+
+## Timeline and Milestones
+- M1 (setup + planning): 20-30 min
+- M2 (implementation): 60-90 min
+- M3 (experiments): 60-90 min
+- M4 (analysis + report): 45-60 min
+- Buffer/debug: 25%
+
+## Potential Challenges
+- Model generation speed for steering loops.
+  - Mitigation: cap sample sizes; batch activation extraction; run on GPU.
+- Sparse instruction combinations.
+  - Mitigation: focus on top-support instruction IDs and documented exclusions.
+- Hooking fragility across transformer architectures.
+  - Mitigation: architecture-specific hook wrapper with assertions and fallback layer choices.
+
+## Success Criteria
+- Complete compositionality map over a non-trivial set of instruction directions (&gt;=8 IDs).
+- Behavioral evaluation on &gt;=3 compositional pairs with automatic scoring.
+- Statistical comparison supporting or rejecting each sub-hypothesis with CIs.
+- Reproducible scripts and documented outputs in `results/`, `figures/`, and `REPORT.md`.
+
+
+════════════════════════════════════════════════════════════════════════════════
+                          LITERATURE REVIEW
+════════════════════════════════════════════════════════════════════════════════
+
+## Literature Review
+
+### Research Area Overview
+This review focuses on whether linear directions in transformer residual streams are truly compositional. Recent work shows that many behaviors can be steered by adding vectors to hidden states, but reliability varies by concept and context. The most relevant thread combines mechanistic interpretability (where in the network a feature lives), activation steering (whether a direction causally controls behavior), and representational geometry (whether features form additive, factorized, or entangled structures).
+
+Search keywords used: `residual stream linear directions`, `activation steering`, `function vectors`, `compositional steering`, `linear representation hypothesis`, `factored representations`.
+
+Note: the local paper-finder script timed out in this environment, so manual arXiv discovery and targeted selection were used.
+
+### Key Papers
+
+#### Paper 1: Function Vectors in Large Language Models
+- **Authors**: Eric Todd, Millicent L. Li, Arnab Sen Sharma, Aaron Mueller, Byron C. Wallace, David Bau
+- **Year**: 2023 (ICLR 2024)
+- **Source**: arXiv / ICLR
+- **Key Contribution**: Introduces function vectors (FVs) as compact causal representations of tasks in residual activations.
+- **Methodology**: Causal mediation and head-level analysis; identify influential heads, sum their outputs into task vectors, inject at inference.
+- **Datasets Used**: Task collections (e.g., antonyms/synonyms, translation, capitals, tense/plural transformations).
+- **Results**: Strong steering effects in middle layers; partial semantic composition via vector addition for some task combinations.
+- **Code Available**: Yes (`code/function_vectors`)
+- **Relevance to Our Research**: Direct evidence that some vectors compose, but only partially and task-dependently.
+
+#### Paper 2: Steering Llama 2 via Contrastive Activation Addition
+- **Authors**: Nina Panickssery et al.
+- **Year**: 2023 (ACL 2024)
+- **Source**: arXiv / ACL
+- **Key Contribution**: Contrastive Activation Addition (CAA) for behavioral steering from positive/negative prompt pairs.
+- **Methodology**: Difference vectors in residual stream; add at generation-time across tokens.
+- **Datasets Used**: Behavioral multiple-choice datasets and open-ended generation settings.
+- **Results**: Effective control of targeted behaviors with limited capability degradation.
+- **Code Available**: Indirect references in activation steering ecosystem.
+- **Relevance to Our Research**: Strong baseline for testing linearity versus context dependence of directions.
+
+#### Paper 3: Steering Language Models With Activation Engineering
+- **Authors**: Alexander Matt Turner et al.
+- **Year**: 2023
+- **Source**: arXiv
+- **Key Contribution**: ActAdd method for simple activation-space steering.
+- **Methodology**: Build steering vectors from prompt-pair activation differences and inject during forward pass.
+- **Datasets Used**: Sentiment, detoxification, topic/behavior control tasks.
+- **Results**: Large behavioral shifts without retraining; robust enough for broad use.
+- **Code Available**: Multiple public repos, including derivative tooling.
+- **Relevance to Our Research**: Foundational linear-direction intervention method.
+
+#### Paper 4: Improving Instruction-Following through Activation Steering
+- **Authors**: Alessandro Stolfo et al.
+- **Year**: 2024 (ICLR 2025)
+- **Source**: arXiv / ICLR
+- **Key Contribution**: Instruction-specific steering vectors, including multi-instruction composition.
+- **Methodology**: Compute vectors from with/without-instruction pairs; tune layer and steering scale.
+- **Datasets Used**: IFEval-style instruction benchmarks (format, length, keyword constraints).
+- **Results**: Better adherence to constraints; composition works but quality-control tradeoffs remain.
+- **Code Available**: Yes (`code/llm-steer-instruct`)
+- **Relevance to Our Research**: Direct compositionality testbed for vector addition under multiple constraints.
+
+#### Paper 5: HyperSteer
+- **Authors**: Jiuding Sun et al.
+- **Year**: 2025
+- **Source**: arXiv
+- **Key Contribution**: Hypernetwork-generated steering vectors at scale.
+- **Methodology**: Condition a generator on steering prompts and model internals; produce vectors end-to-end.
+- **Datasets Used**: Large prompt sets for steering and held-out steering tasks.
+- **Results**: Better scaling behavior than static handcrafted vectors.
+- **Code Available**: Not confirmed in this workspace.
+- **Relevance to Our Research**: Baseline for “nonlinear/vector-generator” alternatives if linear compositionality fails.
+
+#### Paper 6: Steering Vector Fields
+- **Authors**: Jiaqian Li, Yanshu Li, Kuan-Hao Huang
+- **Year**: 2026
+- **Source**: arXiv
+- **Key Contribution**: Replaces single static vectors with context-dependent vector fields.
+- **Methodology**: Learn concept score; use local gradient as steering direction.
+- **Datasets Used**: Multi-model steering tasks and long-form settings.
+- **Results**: Improved reliability and multi-attribute control over static vectors.
+- **Code Available**: Not confirmed in this workspace.
+- **Relevance to Our Research**: Strong evidence that many directions are only locally linear.
+
+#### Paper 7: Transformers Learn Factored Representations
+- **Authors**: Adam Shai et al.
+- **Year**: 2026
+- **Source**: arXiv
+- **Key Contribution**: Formalizes product-space vs factorized residual representation hypotheses.
+- **Methodology**: Theory + synthetic latent-factor experiments; geometric tests for subspace structure.
+- **Datasets Used**: Synthetic processes with known latent structure.
+- **Results**: Transformers prefer factored/orthogonal representations when latent factors are near-conditionally-independent.
+- **Code Available**: Not verified here.
+- **Relevance to Our Research**: Provides explicit hypothesis testing framework for compositional subspaces.
+
+#### Paper 8: Progress Measures for Grokking via Mechanistic Interpretability
+- **Authors**: Neel Nanda et al.
+- **Year**: 2023
+- **Source**: arXiv / ICLR
+- **Key Contribution**: Mechanistic progress metrics and phase decomposition of learned circuits.
+- **Methodology**: Circuit reverse engineering + ablations + Fourier-space analyses.
+- **Datasets Used**: Modular arithmetic synthetic tasks.
+- **Results**: Emergent behavior can be tracked via continuous internal measures.
+- **Code Available**: Tooling in mech-interp ecosystem (`TransformerLens` supports similar workflows).
+- **Relevance to Our Research**: Useful methodology for tracking when compositional directions emerge during training/fine-tuning.
+
+#### Paper 9: Dynamic Activation Composition
+- **Authors**: Daniel Scalena, Gabriele Sarti, Malvina Nissim
+- **Year**: 2024
+- **Source**: arXiv
+- **Key Contribution**: Dynamic weighting for multi-property steering.
+- **Methodology**: Information-theoretic modulation of steering intensities over generation.
+- **Datasets Used**: Multi-property steering evaluations.
+- **Results**: Better simultaneous conditioning with reduced fluency loss.
+- **Code Available**: Not verified in this workspace.
+- **Relevance to Our Research**: Important for evaluating whether additive composition needs dynamic coefficients.
+
+### Common Methodologies
+- Prompt-pair vector extraction: Used in ActAdd/CAA/instruction-steering papers.
+- Residual-stream injection: Most studies steer by adding vectors at selected layers/tokens.
+- Layer search and coefficient sweeps: Standard for finding effective intervention points.
+- Causal analysis / ablations: Used to separate correlation from causal control.
+
+### Standard Baselines
+- Prompt-only control (no activation intervention).
+- Single-vector steering (one property at a time).
+- Static additive multi-vector composition (`v_total = v1 + v2 + ...`).
+- Finetuned instruction-following models for comparison.
+
+### Evaluation Metrics
+- Constraint satisfaction / instruction accuracy (IFEval-style).
+- Target behavior shift metrics (MC accuracy deltas, attribute classifiers).
+- Capability-retention metrics on off-target tasks.
+- Generation quality proxies (perplexity or judge-based quality scoring).
+
+### Datasets in the Literature
+- IFEval and instruction-following subsets: used for controllable format/length/keyword constraints.
+- Truthfulness datasets (TruthfulQA and variants): common for honesty/factuality steering.
+- Synthetic latent-factor tasks: used to test representation factorization.
+- Multi-property steering evaluation sets: used to test composition and interference.
+
+### Gaps and Opportunities
+- Gap 1: Many papers show average steering success, but limited per-instance reliability analyses.
+- Gap 2: Global linear vectors often fail under context shift, long generation, or multi-attribute composition.
+- Gap 3: Few works explicitly test whether discovered vectors define stable linear subspaces across prompts/models.
+- Gap 4: Composition often tested for a small set of compatible attributes; incompatibility regimes are underexplored.
+
+### Recommendations for Our Experiment
+Based on gathered resources:
+- **Recommended datasets**:
+  - `google/IFEval` for controlled multi-constraint composition tests.
+  - `truthful_qa` for truthfulness direction robustness and transfer.
+  - `Rowan/hellaswag` for capability-retention checks.
+- **Recommended baselines**:
+  - ActAdd-style single-vector steering.
+  - CAA with dataset-derived contrastive vectors.
+  - Static additive composition vs dynamic weighting.
+- **Recommended metrics**:
+  - Target-constraint accuracy, composition gain, and interference score.
+  - Off-target performance delta (e.g., HellaSwag change).
+  - Stability across prompts/layers/scales (variance and worst-case performance).
+- **Methodological considerations**:
+  - Evaluate both average and worst-case behavior.
+  - Report layer-locality and coefficient sensitivity.
+  - Explicitly test linear-subspace assumptions by projecting and composing within/orthogonal to discovered bases.
+
+
+════════════════════════════════════════════════════════════════════════════════
+                          PAPER REQUIREMENTS
+════════════════════════════════════════════════════════════════════════════════
+
+Generate a complete academic paper with the following structure:
+
+1. TITLE
+   - Clear, specific, informative
+   - Should convey main finding or contribution
+
+2. AUTHOR
+   - Use this exact author line in the \author{} block: Ari Holtzman and NeuriCo
+
+3. ABSTRACT (150-250 words)
+   - Problem statement
+   - Approach
+   - Key results
+   - Significance
+
+4. INTRODUCTION
+   - Research problem and motivation
+   - Gap in existing work
+   - Our contribution (be specific)
+   - Paper organization
+
+5. RELATED WORK
+   - Organized by theme/approach
+   - Position our work relative to prior work
+   - Cite papers from literature review
+
+6. METHODOLOGY
+   - Clear description of approach
+   - Experimental setup
+   - Datasets used
+   - Evaluation metrics
+   - Baselines
+
+7. RESULTS
+   - Present results with tables and figures
+   - Statistical analysis
+   - Comparison to baselines
+   - Ablation studies (if applicable)
+
+8. DISCUSSION
+   - Interpretation of results
+   - Limitations
+   - Broader implications
+
+9. CONCLUSION
+   - Summary of contributions
+   - Key findings
+   - Future work
+
+10. REFERENCES
+   - BibTeX format
+   - All cited papers
+
+════════════════════════════════════════════════════════════════════════════════
+                          OUTPUT FORMAT
+════════════════════════════════════════════════════════════════════════════════
+
+Create a MODULAR LaTeX project with the following directory structure:
+
+paper_draft/
+├── main.tex              # Main file that imports all sections
+├── references.bib        # BibTeX references
+├── sections/
+│   ├── abstract.tex      # Abstract content
+│   ├── introduction.tex  # Introduction section
+│   ├── related_work.tex  # Related work section
+│   ├── methodology.tex   # Methodology section
+│   ├── results.tex       # Results section
+│   ├── discussion.tex    # Discussion section
+│   └── conclusion.tex    # Conclusion section
+├── figures/              # Directory for any generated figures
+├── tables/               # Directory for complex standalone tables
+└── appendix/             # Directory for appendix sections (if needed)
+
+INSTRUCTIONS:
+1. First, create the directory structure above (mkdir -p paper_draft/sections paper_draft/figures paper_draft/tables paper_draft/appendix)
+2. Write main.tex using the EXACT preamble for NEURIPS:
+
+   \documentclass{article}
+   \usepackage[final]{neurips_2025}  % NEURIPS style (neurips_2025.sty is in paper_draft/)
+   \usepackage[hidelinks]{hyperref}  % REQUIRED: clickable links
+   \usepackage{booktabs}  % REQUIRED: professional tables
+   \usepackage{graphicx}
+   \usepackage{amsmath,amssymb}
+
+   % Import command files
+   \input{commands/math}
+   \input{commands/general}
+   \input{commands/macros}
+
+   % Use this bibliography style:
+   \bibliographystyle{plainnat}
+
+   \author{Ari Holtzman and NeuriCo}
+
+   - Use \input{sections/...} to include each section
+   - Use \bibliography{references} for references
+3. Write each section file with COMPLETE content (no placeholders)
+4. Each section file should include its \section{} command
+5. Write references.bib with all citations in BibTeX format
+6. After writing all files, compile the paper:
+   cd paper_draft && pdflatex -interaction=nonstopmode main.tex && bibtex main && pdflatex -interaction=nonstopmode main.tex && pdflatex -interaction=nonstopmode main.tex
+
+This modular structure allows humans to easily:
+- Edit individual sections without navigating a large file
+- Track changes per section
+- Reuse sections across different paper versions
+
+════════════════════════════════════════════════════════════════════════════════
+                          QUALITY REQUIREMENTS
+════════════════════════════════════════════════════════════════════════════════
+
+- Academic tone throughout
+- All claims must be supported by data from the experiment report
+- Proper citations using \cite{} commands
+- Clear figures and tables with proper captions
+- NO placeholder text - every section must have real content
+- The paper MUST compile without errors
+- If compilation fails, debug and fix the LaTeX errors
+
+════════════════════════════════════════════════════════════════════════════════
+                          LAB WRITING STYLE
+════════════════════════════════════════════════════════════════════════════════
+
+Follow these lab-specific conventions to match our paper style:
+
+1. LANGUAGE STYLE:
+   - Use active voice: "We propose", "We examine", "We focus on"
+   - Be direct and confident: "Our main question is...", "We hypothesize that..."
+   - State things clearly and simply - prefer plain language over jargon
+   - Use bold questions as paragraph organizers: {\bf what is X?}
+   - Include specific quantitative claims: "8.97% over baseline"
+   - Avoid fancy wording: "utilize" → "use", "facilitate" → "help"
+
+2. INTRODUCTION STRUCTURE:
+   - Engaging hook (get to the point quickly)
+   - Problem importance
+   - Gap identification
+   - Your approach with method figure reference
+   - Quantitative preview of results
+   - Contribution bullets (3-4 items, action verbs)
+
+3. CONTRIBUTION LISTS:
+   \begin{itemize}[leftmargin=*,itemsep=0pt,topsep=0pt]
+       \item We propose...
+       \item We conduct...
+       \item We complement...
+   \end{itemize}
+
+4. MODULAR COMMANDS STRUCTURE:
+   Command templates are pre-copied to paper_draft/commands/:
+   - math.tex: Math notation macros
+   - general.tex: Formatting macros
+   - macros.tex: Project-specific term definitions (customize this for your paper)
+
+   In main.tex, include:
+   \input{commands/math}
+   \input{commands/general}
+   \input{commands/macros}
+
+5. REFERENCE CONVENTIONS:
+   Use reference macros from math.tex:
+   - \figref{fig:name} for "figure 1" (lowercase, in-sentence)
+   - \Figref{fig:name} for "Figure 1" (capitalized, start of sentence)
+   - \secref{sec:name} for "section 2"
+
+6. TEXT FORMATTING:
+   - Use \para{Header text} for bold paragraph headers
+   - Define method/dataset names with \textsc and \xspace:
+     \newcommand{\methodname}{\textsc{MethodName}\xspace}
+
+7. TABLE FORMATTING:
+   - Use booktabs package (no vertical lines)
+   - Use \resizebox{\textwidth}{!}{...} for wide tables
+   - Use @{} to remove padding at table edges
+   - Use \cmidrule(lr){x-y} for sub-headers
+   - Use \textsc{} for dataset/method names in headers
+   - Bold best results with {\bf ...}
+
+8. FIGURE FORMATTING:
+   - Use 0.32\textwidth for 3-column subfigures
+   - Use 0.95\linewidth for full-width figures
+   - Use \input{figures/legend} for shared legends
+   - Write self-contained captions explaining key observations
+
+9. RESULTS PRESENTATION:
+   - Define \increase and \decrease for colored arrows (green up, red down)
+   - Bold best results in tables
+   - Report confidence intervals when available
+
+10. ALGORITHM STYLING:
+    - Use algpseudocode with [noend]
+    - Use \triangleright for comments
+
+11. HYPERLINKS (REQUIRED):
+    - Always use \usepackage[hidelinks]{hyperref} or with colored links
+    - All citations, section refs, figure refs, table refs must be clickable
+    - This is essential for reader navigation
+
+════════════════════════════════════════════════════════════════════════════════
+                          WORKFLOW: REVIEW AND REFLECT
+════════════════════════════════════════════════════════════════════════════════
+
+Before calling finish, you MUST complete these review steps:
+
+1. REVIEW RESOURCES (at the start):
+   - Read .codex/skills/paper-writer/SKILL.md for detailed guidance
+   - Study templates/paper_writing/lab_style_guide.md for style conventions
+   - Browse paper_examples/ for formatting and language patterns
+
+2. SELF-REFLECTION (before finishing):
+   After writing all sections, review your work against these criteria:
+
+   LANGUAGE CHECK:
+   - [ ] Is the writing clear and jargon-free?
+   - [ ] Are claims specific with quantitative support?
+   - [ ] Is active voice used throughout?
+
+   FORMATTING CHECK:
+   - [ ] Does main.tex include \input{commands/math}, \input{commands/general}, \input{commands/macros}?
+   - [ ] Is hyperref package included for clickable references?
+   - [ ] Do tables use booktabs (no vertical lines)?
+   - [ ] Are best results bolded in tables?
+   - [ ] Are figures/tables properly captioned?
+
+   STRUCTURE CHECK:
+   - [ ] Does introduction follow: hook → importance → gap → approach → preview → contributions?
+   - [ ] Are contribution bullets specific with action verbs?
+   - [ ] Does the paper compile without errors?
+
+3. FIX ISSUES:
+   - Address any issues found in the self-reflection
+   - Re-compile and verify the PDF looks correct
+
+Only after completing this review should you consider the paper finished.

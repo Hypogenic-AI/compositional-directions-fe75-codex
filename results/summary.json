@@ -1,0 +1,150 @@
+{
+  "model_name": "Qwen/Qwen2.5-0.5B-Instruct",
+  "seed": 42,
+  "device": "cuda",
+  "n_layers": 24,
+  "steer_layer": 12,
+  "n_selected_directions": 20,
+  "selected_direction_ids": [
+    "change_case:capital_word_frequency",
+    "change_case:english_capital",
+    "change_case:english_lowercase",
+    "combination:repeat_prompt",
+    "detectable_content:number_placeholders",
+    "detectable_content:postscript",
+    "detectable_format:constrained_response",
+    "detectable_format:number_bullet_lists",
+    "detectable_format:number_highlighted_sections",
+    "detectable_format:title",
+    "keywords:forbidden_words",
+    "keywords:frequency",
+    "keywords:letter_frequency",
+    "language:response_language",
+    "length_constraints:number_paragraphs",
+    "length_constraints:number_sentences",
+    "length_constraints:number_words",
+    "punctuation:no_comma",
+    "startend:end_checker",
+    "startend:quotation"
+  ],
+  "direction_meta": {
+    "change_case:capital_word_frequency": {
+      "n_used": 10,
+      "norm": 6.697768688201904,
+      "split_half_cos_mean": 0.7682294387214359
+    },
+    "change_case:english_capital": {
+      "n_used": 11,
+      "norm": 4.388707160949707,
+      "split_half_cos_mean": 0.5422519643849827
+    },
+    "change_case:english_lowercase": {
+      "n_used": 13,
+      "norm": 4.775245189666748,
+      "split_half_cos_mean": 0.6869004061339595
+    },
+    "combination:repeat_prompt": {
+      "n_used": 16,
+      "norm": 7.719375133514404,
+      "split_half_cos_mean": 0.8353666592076671
+    },
+    "detectable_content:number_placeholders": {
+      "n_used": 10,
+      "norm": 6.921211242675781,
+      "split_half_cos_mean": 0.772787698402706
+    },
+    "detectable_content:postscript": {
+      "n_used": 13,
+      "norm": 10.564566612243652,
+      "split_half_cos_mean": 0.8671031773131943
+    },
+    "detectable_format:constrained_response": {
+      "n_used": 10,
+      "norm": 10.089170455932617,
+      "split_half_cos_mean": 0.8448073811979756
+    },
+    "detectable_format:number_bullet_lists": {
+      "n_used": 13,
+      "norm": 9.955123901367188,
+      "split_half_cos_mean": 0.7854619279420512
+    },
+    "detectable_format:number_highlighted_sections": {
+      "n_used": 16,
+      "norm": 7.1185383796691895,
+      "split_half_cos_mean": 0.7591039462640051
+    },
+    "detectable_format:title": {
+      "n_used": 13,
+      "norm": 6.182794570922852,
+      "split_half_cos_mean": 0.8104841543215086
+    },
+    "keywords:forbidden_words": {
+      "n_used": 16,
+      "norm": 7.604053974151611,
+      "split_half_cos_mean": 0.8448223014352606
+    },
+    "keywords:frequency": {
+      "n_used": 13,
+      "norm": 6.445060729980469,
+      "split_half_cos_mean": 0.8140477980930232
+    },
+    "keywords:letter_frequency": {
+      "n_used": 11,
+      "norm": 6.881424427032471,
+      "split_half_cos_mean": 0.7731704706954082
+    },
+    "language:response_language": {
+      "n_used": 16,
+      "norm": 6.092178821563721,
+      "split_half_cos_mean": 0.8199860611294837
+    },
+    "length_constraints:number_paragraphs": {
+      "n_used": 10,
+      "norm": 5.501255512237549,
+      "split_half_cos_mean": 0.5021306815159682
+    },
+    "length_constraints:number_sentences": {
+      "n_used": 14,
+      "norm": 4.495544910430908,
+      "split_half_cos_mean": 0.6238831389495739
+    },
+    "length_constraints:number_words": {
+      "n_used": 13,
+      "norm": 4.400840759277344,
+      "split_half_cos_mean": 0.7265471264979623
+    },
+    "punctuation:no_comma": {
+      "n_used": 16,
+      "norm": 6.642721176147461,
+      "split_half_cos_mean": 0.8537894047572919
+    },
+    "startend:end_checker": {
+      "n_used": 16,
+      "norm": 6.5225138664245605,
+      "split_half_cos_mean": 0.7170454996127721
+    },
+    "startend:quotation": {
+      "n_used": 14,
+      "norm": 7.126833915710449,
+      "split_half_cos_mean": 0.8699770155488503
+    }
+  },
+  "representation_mean_cosine": 0.5181110828399439,
+  "representation_mean_r2_like": -0.4950307162392937,
+  "representation_mean_rel_norm_err": 0.25598942538324165,
+  "run_seconds": 298.8868284225464,
+  "gpu_available": true,
+  "gpu_count": 2,
+  "related_vs_unrelated_mwu_p": 0.6638935100127787,
+  "related_cosine_mean": 0.5714541100020201,
+  "unrelated_cosine_mean": 0.509464214805142,
+  "pair_cosine_bootstrap_ci95": [
+    0.47802577001422597,
+    0.5434413584399139
+  ],
+  "behavior_mean_composition_gain_over_best_single": 0.0,
+  "behavior_composition_gain_ci95": [
+    0.0,
+    0.0
+  ]
+}

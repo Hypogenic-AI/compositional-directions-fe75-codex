@@ -1,0 +1,7 @@
+\begin{abstract}
+Activation steering methods often assume that residual-stream directions compose by vector addition, but this assumption has not been mapped systematically at the direction-pair level. We examine which instruction-derived directions are compositional and where composition breaks down. Using Qwen2.5-0.5B-Instruct, we extract 20 instruction directions from IFEval-derived data and evaluate composition with three tests: representation-space additivity on multi-instruction prompts, behavior-space additivity under activation steering, and transfer locality on TruthfulQA and HellaSwag contexts.
+
+We find partial compositionality rather than a global linear subspace. In representation space, additive predictions are moderately aligned with observed displacements (mean cosine 0.518, 95\% bootstrap CI [0.478, 0.543]) but poorly calibrated in magnitude (mean R2-like score -0.495; mean relative norm error 0.256). Pair quality varies widely, including negative examples. Related instruction families show slightly higher mean cosine than unrelated families (0.571 vs. 0.509), but this gap is not significant (Mann-Whitney $p=0.664$). In behavior space, summed steering does not improve joint constraint satisfaction over the best single vector (gain 0.000). In transfer locality tests with synthetic instruction appends, additivity remains high (TruthfulQA 0.868; HellaSwag 0.919).
+
+These results support a mixed regime: local additive structure is real, but global compositionality is uneven and operationally fragile.
+\end{abstract}
